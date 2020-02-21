@@ -1,0 +1,29 @@
+# 项目端口
+server:
+  port: 8111
+  servlet:
+    context-path: /shop-manage
+
+spring:
+  profiles:
+    include: db
+  application:
+    name: /shop-manage
+  datasource:
+    name: mydb
+    url: ${jdbc.url}
+    username: ${jdbc.username}
+    password: ${jdbc.password}
+    type: com.alibaba.druid.pool.DruidDataSource
+    # MySQL 8.x: com.mysql.cj.jdbc.Driver
+    driver-class-name: ${jdbc.driverClassName}
+    initial-size: 1
+    min-idle: 1
+    max-active: 20
+    test-on-borrow: true
+
+#构建数据对象映射文件
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.shop.manage.model
+
